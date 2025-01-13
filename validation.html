@@ -1,0 +1,139 @@
+
+
+
+<html>
+
+<head>
+    <title>Form val</title>
+    <style>
+        div {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 30px 30px rgba(22, 21, 21, 0.1);
+            width: 350px;
+            margin-top: 20px;
+        }
+
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="email"],
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .alert {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body bgcolor="#f1fa8e">
+    <center>
+        <div>
+            <h2>Registration Form</h2>
+            <hr><br>
+            <form name="myform" onsubmit="formval()">
+                &emsp;Name &emsp;&nbsp;&nbsp;<input type="text" maxlength="30" name="name"><br>
+                Password <input type="password" name="pass"><br>
+                Confirm Password <input type="password" name="pass1"><br>
+                Mobile <input type="tel" name="mob"><br>
+                Email <input type="email" name="mail"><br>
+                Address <textarea rows="5" cols="20" name="address"></textarea><br>
+                D.O.B <input type="date" name="Birth"><br><br>
+                Gender : Male <input type="radio" name="gender">Female <input type="radio" name="gender"><br><br>
+                <input type="submit" value="submit"><br><br>
+                <input type="reset" value="reset">
+            </form>
+        </div>
+    </center>
+</body>
+<script>
+    function formval() {
+        var name = document.myform.name.value
+        var pass = document.myform.pass.value
+        var pass1 = document.myform.pass1.value
+        var mob = document.myform.mob.value
+        var mail = document.myform.mail.value
+        var address = document.myform.address.value
+        var Birth = document.myform.Birth.value
+        var gender = document.myform.gender.value
+
+
+        if (name == null || name == "" || name.length <= 3) {
+            alert("name can't be blank or greater than 4 character")
+            return false
+        }
+        else if (pass == null || pass.length < 6) {
+            alert("password must be atleast 6 characters long")
+            return false
+        }
+        else if (pass1 == null || pass != pass1) {
+            alert("password must be same")
+            return false
+        }
+        else if (mob == null || mob.length != 10) {
+            alert("mobile number must be 10 digits")
+            return false
+        }
+        else if (mail == null || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(mail)) {
+            alert("Input a valid email")
+            return false
+        }
+        else if (address == null) {
+            alert("Input a valid address")
+            return false
+        }
+        else if (Birth === "") {
+            alert("add your date of birth")
+            return false
+        }
+        var birthDate = new Date(Birth);
+        var currentDate = new Date();
+        var age = currentDate.getFullYear() - birthDate.getFullYear();
+
+        if (age < 18) {
+            alert("you must be atleast 18 years old to register")
+            return false
+        }
+        else if (gender === "") {
+            alert("select a gender")
+            return false
+        }
+        alert("form submitted successfully")
+        return true
+    }
+</script>
+
+</html>
+
+
